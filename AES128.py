@@ -164,6 +164,7 @@ class AES128:
 
         # Add initial round key to the state matrix
         self._add_round_key(0)
+        self.print_state("Initial state matrix")
 
         # Now start doing some actual heavy lifting for rounds 1->9
         for i in range(1, 10):
@@ -193,6 +194,7 @@ class AES128:
 
         # Add initial round key to the state matrix
         self._add_round_key(10)
+        self.print_state("Initial state matrix")
 
         # Now start doing some actual heavy lifting for rounds 1->9
         for i in reversed(range(1, 10)):
@@ -317,7 +319,7 @@ class AES128:
     # Determine the round key for the w3 word on the specified round stage
     @staticmethod
     def _g_op(list_elem, stage_round):
-        rcon = [AES128._RCON_TUPLE[stage_round], 0x00, 0x00, 0x00, 0x00]
+        rcon = [AES128._RCON_TUPLE[stage_round], 0x00, 0x00, 0x00]
         shifted_list = Tools.circular_shift_list_left(list_elem, 1)
         s_boxed_list = AES128._get_sboxed_list(shifted_list)
         res_list = Tools.xor_lists(s_boxed_list, rcon)
