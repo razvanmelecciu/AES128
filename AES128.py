@@ -143,9 +143,9 @@ class AES128:
 
         # Make sure the data and key are 128 bit aligned
         while len(my_data) % 16 != 0:
-            my_data.append(0x00)
+            my_data += chr(0x00)
         while len(my_key) % 16 != 0:
-            my_key.append(0x00)
+            my_key += chr(0x00)
 
         # self.clear_text = Tools.transpose_linear_array(my_data, AES128._MATRIX_SIZE, AES128._MATRIX_SIZE)
         self.clear_text = my_data
